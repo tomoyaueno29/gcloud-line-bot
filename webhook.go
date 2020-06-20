@@ -36,7 +36,6 @@ func init() {
 	}
 }
 
-
 func Webhook(w http.ResponseWriter, r *http.Request) {
 	client, err := linebot.New(secrets.LineChannelSecret, secrets.LineChannelAccessToken)
 	if err != nil {
@@ -66,7 +65,7 @@ func Webhook(w http.ResponseWriter, r *http.Request) {
 
 func lineSecretsKmsKeyName() string {
 	prjID := os.Getenv("GCP_PROJECT_ID")
-	keyRingName :=os.Getenv("KMS_KEY_RING_NAME")
+	keyRingName := os.Getenv("KMS_KEY_RING_NAME")
 	keyName := os.Getenv("KMS_LINE_SECRETS_KEY_NAME")
 	return fmt.Sprintf("projects/%s/locations/global/keyRings/%s/cryptoKeys/%s", prjID, keyRingName, keyName)
 }
